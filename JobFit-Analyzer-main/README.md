@@ -6,6 +6,8 @@ The platform also includes user authentication and a history log, allowing job s
 
 ![JobFit Analyzer](https://img.shields.io/badge/Status-Active-success) ![License](https://img.shields.io/badge/License-MIT-blue)
 
+# Deployed Link :- [https://resume-match-pqezq506h-priya-yadavs-projects-ac130dd5.vercel.app/]
+
 ## ✨ Features
 
 - **Resume Matching**: Upload a PDF/DOCX resume and paste a job description to instantly calculate a compatibility match rate.
