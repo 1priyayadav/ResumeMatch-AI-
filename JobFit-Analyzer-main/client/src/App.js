@@ -15,7 +15,7 @@ const App = () => {
 
   // base url to make request to the server
   axios.defaults.baseURL =
-    "https://jobfit-analyzer-server.onrender.com/api/v1/";
+    process.env.REACT_APP_API_URL || "http://localhost:5000/api/v1/";
 
   // alow sending cookies
   axios.defaults.withCredentials = true;
@@ -33,21 +33,31 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
-      <NavbarCompo isLogged={isLoggedIn}>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          {/* Protected Routes (account) */}
-          <Route element={<ProtectedRoutes checkIsLoggedIn={isLoggedIn} />}>
-            <Route path="/account" element={<Account />} />
-            <Route path="/history" element={<History />} />
-          </Route>
-        </Routes>
-      </NavbarCompo>
-    </Router>
+    <>
+      {/* Background animated glows */}
+      <div className="bg-glow-wrapper">
+        <div className="bg-glow-1"></div>
+        <div className="bg-glow-2"></div>
+      </div>
+      
+      <Router>
+        <NavbarCompo isLogged={isLoggedIn}>
+          <div className="container mt-4 mb-5 fade-in-up">
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              {/* Protected Routes (account) */}
+              <Route element={<ProtectedRoutes checkIsLoggedIn={isLoggedIn} />}>
+                <Route path="/account" element={<Account />} />
+                <Route path="/history" element={<History />} />
+              </Route>
+            </Routes>
+          </div>
+        </NavbarCompo>
+      </Router>
+    </>
   );
 };
 

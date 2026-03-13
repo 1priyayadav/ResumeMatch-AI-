@@ -34,46 +34,47 @@ const NavbarCompo = ({ isLogged, children }) => {
         </div>
       ) : (
         <>
-          <Navbar expand="lg" className="bg-body-tertiary" sticky="top">
+          <Navbar expand="lg" className="glass-navbar mb-4" sticky="top" variant="dark">
             <Container>
-              <Navbar.Brand as={Link} to="/">
+              <Navbar.Brand as={Link} to="/" className="d-flex align-items-center gap-2">
+                <i className="bi bi-briefcase-fill text-primary"></i>
                 JobFit Analyzer
               </Navbar.Brand>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0 shadow-none" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto" />
-                <Nav className="justify-content-end">
-                  <Nav.Link as={Link} to="/">
+                <Nav className="justify-content-end align-items-center gap-2">
+                  <Nav.Link as={Link} to="/" className="px-3">
                     Home
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/about">
+                  <Nav.Link as={Link} to="/about" className="px-3">
                     About
                   </Nav.Link>
 
                   {isLogged ? (
                     <>
-                      <Nav.Link as={Link} to="/history">
+                      <Nav.Link as={Link} to="/history" className="px-3">
                         History
                       </Nav.Link>
-                      <NavDropdown title="Profile" id="basic-nav-dropdown">
+                      <NavDropdown title="Profile" id="basic-nav-dropdown" align="end" className="ms-2">
                         <NavDropdown.Item as={Link} to="/account">
-                          Account
+                          <i className="bi bi-person me-2"></i>Account
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item onClick={handleLogout}>
-                          Logout
+                        <NavDropdown.Item onClick={handleLogout} className="text-danger">
+                          <i className="bi bi-box-arrow-right me-2"></i>Logout
                         </NavDropdown.Item>
                       </NavDropdown>
                     </>
                   ) : (
-                    <>
-                      <Nav.Link as={Link} to="/register">
-                        Sign Up
-                      </Nav.Link>
-                      <Nav.Link as={Link} to="/login">
+                    <div className="d-flex gap-3 ms-lg-3 mt-3 mt-lg-0">
+                      <Nav.Link as={Link} to="/login" className="btn-glass-ghost px-4 py-2 m-0 text-center">
                         Login
                       </Nav.Link>
-                    </>
+                      <Nav.Link as={Link} to="/register" className="btn-glass-primary px-4 py-2 m-0 text-white text-center">
+                        Sign Up
+                      </Nav.Link>
+                    </div>
                   )}
                 </Nav>
               </Navbar.Collapse>

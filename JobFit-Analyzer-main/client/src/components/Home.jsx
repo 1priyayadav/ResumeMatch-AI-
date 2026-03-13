@@ -91,63 +91,79 @@ const Home = () => {
   return (
     <>
       {showResult ? (
-        <Result onGoBack={handleGoBack} matchRate={matchRate} />
+        <div className="fade-in-up">
+          <Result onGoBack={handleGoBack} matchRate={matchRate} />
+        </div>
       ) : (
-        <Row className="m-0 mt-5 d-flex align-items-center justify-content-center">
+        <Row className="m-0 mt-5 d-flex align-items-center justify-content-center fade-in-up">
           <Col xs={12} sm={10} md={8} lg={6}>
-            <Form className="card bg-light p-5 rounded" onSubmit={handleSubmit}>
+            <Form className="glass-card p-5" onSubmit={handleSubmit}>
+              <div className="text-center mb-5">
+                <h2 className="font-weight-bold mb-2">JobFit Analysis</h2>
+                <p className="text-light opacity-75">Upload your resume and the job description to see your match rate.</p>
+              </div>
+              
               <Form.Group>
-                <Form.Label className="font-weight-bold mb-4 fs-4 text-center">
-                  Upload Your Resume
+                <Form.Label className="font-weight-bold mb-3 fs-5">
+                  1. Resume Upload
                 </Form.Label>
-                <Form.Control
-                  type="file"
-                  id="customFile"
-                  className="text-center mb-4"
-                  name="uploadFile"
-                  onChange={handleResumeFileChange}
-                  required
-                />
-                <Form.Text className="text-muted fs-6">
-                  Accepted formats: PDF, DOCX
-                </Form.Text>
-                <Form.Text className="d-block text-muted fs-6">
-                  Maximum file size: {maxFileSizeInMB}MB
-                </Form.Text>
-                <hr />
-                <Form.Label className="font-weight-bold mb-4 fs-4 text-center">
-                  Job Description
+                <div className="glass-container p-3 mb-2 rounded text-center">
+                  <Form.Control
+                    type="file"
+                    id="customFile"
+                    className="text-center glass-input w-100"
+                    name="uploadFile"
+                    onChange={handleResumeFileChange}
+                    required
+                  />
+                </div>
+                <div className="d-flex justify-content-between text-light opacity-75 fs-6 mb-4 px-2">
+                  <small>Formats: PDF, DOCX</small>
+                  <small>Max size: {maxFileSizeInMB}MB</small>
+                </div>
+                
+                <hr className="border-secondary opacity-25 my-4" />
+                
+                <Form.Label className="font-weight-bold mb-3 fs-5">
+                  2. Job Description
                 </Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={6}
-                  placeholder="Provide a detailed job description..."
+                  className="glass-input mb-2"
+                  placeholder="Paste the detailed job description here..."
                   value={jobDescription}
                   onChange={handleJobDescriptionChange}
                   required
                 />
               </Form.Group>
+              
               {error && (
-                <h6 className="text-center mt-3 text-danger">{error}</h6>
+                <div className="alert alert-danger mt-3 bg-danger bg-opacity-25 border-danger text-white backdrop-blur">
+                  {error}
+                </div>
               )}
+              
               <Button
-                variant="dark"
-                size="md"
-                className="w-100 mt-4 p-2"
+                size="lg"
+                className="btn-glass-primary w-100 mt-4 p-3 d-flex align-items-center justify-content-center gap-2"
                 type="submit"
                 disabled={isLoading}
               >
                 {isLoading ? (
                   <>
                     <span
-                      className="spinner-border spinner-border-sm me-2"
+                      className="spinner-border spinner-border-sm"
                       role="status"
                       aria-hidden="true"
                     ></span>
-                    Analyzing...
+                    <span>Analyzing Match Rate...</span>
                   </>
                 ) : (
-                  "Start JobFit Analysis"
+                  <>
+                    <span>Start Analysis</span>
+                    <i className="bi bi-arrow-right"></i>
+                  </>
                 )}
               </Button>
             </Form>

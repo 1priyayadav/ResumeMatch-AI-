@@ -86,63 +86,71 @@ const History = () => {
           </Spinner>
         </div>
       ) : (
-        <div className="history-container mt-5">
-          <div className="card bg-light history-box">
-            <div className="history-header d-flex justify-content-between align-items-center mb-3">
-              <h3 className="history-title">History</h3>
+        <div className="history-container mt-5 fade-in-up">
+          <div className="glass-card history-box">
+            <div className="history-header d-flex justify-content-between align-items-center mb-4">
+              <h2 className="history-title font-weight-bold mb-0">Analysis History</h2>
               {histories.length !== 0 && (
                 <Button
-                  variant="danger"
-                  className="history-clear-button"
+                  variant="outline-danger"
+                  className="history-clear-button d-flex align-items-center gap-2"
                   onClick={handleClearAll}
                   disabled={isClearing}
                 >
                   {isClearing ? (
                     <>
                       <span
-                        className="spinner-border spinner-border-sm me-2"
+                        className="spinner-border spinner-border-sm"
                         role="status"
                         aria-hidden="true"
                       ></span>
                       Clearing...
                     </>
                   ) : (
-                    "Clear All"
+                    <>
+                      <i className="bi bi-trash3"></i>
+                      Clear All
+                    </>
                   )}
                 </Button>
               )}
             </div>
             <div className="history-items">
               {histories.length === 0 ? (
-                <p className="text-center">No history available</p>
+                <div className="text-center p-5 text-light opacity-75">
+                  <i className="bi bi-clock-history fs-1 mb-3 d-block"></i>
+                  <p className="fs-5">No analysis history available yet</p>
+                </div>
               ) : (
-                <div className="history-scroll">
-                  <ListGroup>
+                <div className="history-scroll pe-2">
+                  <ListGroup variant="flush">
                     {histories.map(({ fileName, _id, createdAt }) => (
                       <ListGroup.Item
                         key={_id}
-                        className="d-flex justify-content-between align-items-center history-item"
+                        className="d-flex justify-content-between align-items-center history-item px-4 py-3 border-0 mb-3"
                       >
-                        <div className="item-container">
-                          {getFormattedDate(createdAt)} -{" "}
-                          {truncateQuery(fileName, 50)}
+                        <div className="item-container text-light d-flex align-items-center gap-3">
+                          <div className="bg-primary bg-opacity-25 p-2 rounded text-primary">
+                            <i className="bi bi-file-earmark-text fs-5"></i>
+                          </div>
+                          <div>
+                            <div className="fw-semibold mb-1 text-white">{truncateQuery(fileName, 50)}</div>
+                            <small className="opacity-75">{getFormattedDate(createdAt)}</small>
+                          </div>
                         </div>
                         <div>
                           <Button
-                            variant="outline-danger"
-                            className={"delete-button"}
+                            variant="outline-light"
+                            className="delete-button border-0 opacity-75 hover-opacity-100"
                             onClick={() => handleDelete(_id)}
                             disabled={isDeleting[_id]}
                           >
                             {isDeleting[_id] ? (
-                              <>
-                                <span
-                                  className="spinner-border spinner-border-sm me-2"
-                                  role="status"
-                                  aria-hidden="true"
-                                ></span>
-                                Deleting...
-                              </>
+                              <span
+                                className="spinner-border spinner-border-sm"
+                                role="status"
+                                aria-hidden="true"
+                              ></span>
                             ) : (
                               <FaTimes />
                             )}

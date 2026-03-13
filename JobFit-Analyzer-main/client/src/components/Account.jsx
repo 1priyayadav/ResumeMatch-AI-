@@ -142,93 +142,98 @@ const Account = () => {
           </Spinner>
         </div>
       ) : (
-        <Container className="d-flex justify-content-center align-items-center mt-5">
-          <Card
-            className="w-100"
-            style={{
-              maxWidth: "600px",
-              borderRadius: "8px",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-            }}
+        <Container className="d-flex justify-content-center align-items-center mt-5 mb-5 fade-in-up">
+          <div
+            className="glass-card p-4"
+            style={{ maxWidth: "600px", width: "100%" }}
           >
-            <Card.Body>
-              <h1 className="text-center mb-4">Profile</h1>
+            <div className="card-body px-sm-4 pb-4">
+              <div className="text-center py-4 mb-3">
+                <h1 className="mb-0 font-weight-bold">Profile</h1>
+                <p className="text-light opacity-75 mt-2">Manage your account settings</p>
+              </div>
               <Form>
-                <Form.Group controlId="formName">
-                  <Form.Label>Username</Form.Label>
-                  <Form.Control type="text" value={user.name} disabled />
+                <Form.Group controlId="formName" className="mb-4">
+                  <Form.Label className="text-light opacity-75 ms-1">Username</Form.Label>
+                  <Form.Control type="text" value={user.name} disabled className="glass-input text-white" />
                 </Form.Group>
 
-                <Form.Group controlId="formEmail">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" value={user.email} disabled />
+                <Form.Group controlId="formEmail" className="mb-4">
+                  <Form.Label className="text-light opacity-75 ms-1">Email</Form.Label>
+                  <Form.Control type="email" value={user.email} disabled className="glass-input text-white" />
                 </Form.Group>
 
-                <Form.Group controlId="formOldPassword">
-                  <Form.Label>Old Password</Form.Label>
+                <Form.Group controlId="formOldPassword" className="mb-4">
+                  <Form.Label className="text-light opacity-75 ms-1">Old Password</Form.Label>
                   <Form.Control
                     autoComplete="on"
                     type="password"
                     value={oldPassword}
+                    className="glass-input text-white"
                     placeholder="Old Password"
                     required
                     onChange={handleOldPasswordChange}
                   />
                 </Form.Group>
-                <Form.Group controlId="formNewPassword">
-                  <Form.Label>New Password</Form.Label>
+                <Form.Group controlId="formNewPassword" className="mb-5">
+                  <Form.Label className="text-light opacity-75 ms-1">New Password</Form.Label>
                   <Form.Control
                     autoComplete="on"
                     type="password"
                     value={newPassword}
+                    className="glass-input text-white"
                     placeholder="New Password"
                     onChange={handleNewPasswordChange}
                     required
                   />
                 </Form.Group>
-                <Button
-                  variant="dark"
-                  className="w-100 mt-3"
-                  onClick={handleResetPassword}
-                  disabled={isResettingPassword}
-                >
-                  {isResettingPassword ? (
-                    <>
-                      <div
-                        className="spinner-border spinner-border-sm text-light me-2"
-                        role="status"
-                      ></div>
-                      Resetting Password...
-                    </>
-                  ) : (
-                    "Reset Password"
-                  )}
-                </Button>
-                <hr className="my-4" />
+                <div className="text-center">
+                  <Button
+                    variant="dark"
+                    className={`btn-glass-primary w-100 ${isResettingPassword ? "disabled" : ""}`}
+                    onClick={handleResetPassword}
+                    disabled={isResettingPassword}
+                  >
+                    {isResettingPassword ? (
+                      <>
+                        <div
+                          className="spinner-border spinner-border-sm text-light me-2"
+                          role="status"
+                        ></div>
+                        Resetting Password...
+                      </>
+                    ) : (
+                      "Reset Password"
+                    )}
+                  </Button>
+                </div>
+                <hr className="my-5 border-light opacity-25" />
                 <div className="d-flex justify-content-center align-items-center">
                   <Button
-                    variant="danger"
-                    className="mt-3"
+                    variant="outline-danger"
+                    className="mt-2 d-flex align-items-center gap-2"
                     onClick={handleDeleteAccount}
                     disabled={isDeletingAccount}
                   >
-                    <FaTrash className="mr-2" /> Delete Account
+                    <FaTrash /> Delete Account
                   </Button>
 
                   <Modal
                     show={showConfirmation}
                     onHide={handleCloseConfirmation}
                     centered
+                    contentClassName="glass-card"
                   >
-                    <Modal.Header closeButton>
-                      <Modal.Title>Confirmation</Modal.Title>
+                    <Modal.Header closeButton closeVariant="white" className="border-bottom border-secondary border-opacity-25">
+                      <Modal.Title className="text-white">Confirmation</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
-                      Are you sure you want to delete your account?
+                    <Modal.Body className="text-light">
+                      Are you sure you want to delete your account? This action cannot be undone.
                     </Modal.Body>
-                    <Modal.Footer>
+                    <Modal.Footer className="border-top border-secondary border-opacity-25">
                       <Button
                         variant="secondary"
+                        className="btn-glass-ghost"
                         onClick={handleCloseConfirmation}
                         disabled={isDeletingAccount}
                       >
@@ -255,8 +260,8 @@ const Account = () => {
                   </Modal>
                 </div>
               </Form>
-            </Card.Body>
-          </Card>
+            </div>
+          </div>
 
           <Toast
             show={showErrorToast}

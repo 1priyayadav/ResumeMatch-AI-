@@ -56,11 +56,14 @@ const Result = ({ onGoBack, matchRate }) => {
     for (const { range, title, suggestions } of suggestionsData) {
       if (matchRate >= range[0] && matchRate <= range[1]) {
         return (
-          <div>
-            <h3>{title}</h3>
-            <ul>
+          <div className="text-start mt-2">
+            <h4 className="text-white mb-3 d-flex align-items-center gap-2">
+              <i className="bi bi-lightbulb-fill text-warning"></i>
+              {title}
+            </h4>
+            <ul className="text-light opacity-75 fs-5 lh-lg mb-0">
               {suggestions.map((suggestion, index) => (
-                <li key={index}>{suggestion}</li>
+                <li key={index} className="mb-2">{suggestion}</li>
               ))}
             </ul>
           </div>
@@ -71,27 +74,32 @@ const Result = ({ onGoBack, matchRate }) => {
   };
 
   return (
-    <Container className="py-5">
+    <Container className="py-5 fade-in-up">
       <Row className="justify-content-center">
-        <Col xs={12} sm={7}>
-          <div className="bg-light p-5 rounded shadow">
-            <h3 className="mb-4 font-weight-bold text-center">
+        <Col xs={12} sm={8} lg={6}>
+          <div className="glass-card p-5 text-center">
+            <h3 className="mb-4 font-weight-bold text-white">
               Result - Match Rate:
             </h3>
-            <h2
-              className={`text-center display-5 font-weight-bold ${getColorClass()}`}
-            >
-              {matchRate}%
-            </h2>
-            <hr />
-            {getMatchingSuggestions()}
+            <div className="p-4 rounded glass-input d-inline-block mb-4">
+              <h1
+                className={`mb-0 display-4 font-weight-bold ${getColorClass()}`}
+                style={{ textShadow: "0 0 10px rgba(255,255,255,0.2)" }}
+              >
+                {matchRate}%
+              </h1>
+            </div>
+            <hr className="border-light opacity-25 mb-4" />
+            <div className="text-start">
+              {getMatchingSuggestions()}
+            </div>
           </div>
         </Col>
       </Row>
       <Row className="mt-4 justify-content-center">
         <Col xs="auto">
-          <Button variant="dark" onClick={handleGoBack}>
-            <FontAwesomeIcon icon={faArrowLeft} className="btn-lg" />
+          <Button variant="outline-light" className="btn-glass-ghost px-4 py-2 d-flex align-items-center gap-2" onClick={handleGoBack}>
+            <FontAwesomeIcon icon={faArrowLeft} />
             Go Back
           </Button>
         </Col>

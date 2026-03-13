@@ -52,40 +52,38 @@ const Login = () => {
   };
 
   return (
-    <div className="container d-flex align-items-center justify-content-center mt-5">
+    <div className="container d-flex align-items-center justify-content-center mt-5 fade-in-up">
       <div
-        className="card p-4 shadow"
-        style={{ maxWidth: "600px", width: "100%", borderRadius: "8px" }}
+        className="glass-card p-4"
+        style={{ maxWidth: "500px", width: "100%" }}
       >
-        <div
-          className="card-header bg-dark text-white text-center py-3"
-          style={{ borderRadius: "8px 8px 0 0" }}
-        >
-          <h2 className="mb-0">Login</h2>
+        <div className="text-center py-4 mb-3">
+          <h2 className="mb-0 font-weight-bold">Welcome Back</h2>
+          <p className="text-light opacity-75 mt-2">Sign in to your account</p>
         </div>
-        <div className="card-body">
+        <div className="card-body px-sm-4 pb-4">
           <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">
+            <div className="mb-4">
+              <label htmlFor="email" className="form-label text-light opacity-75 ms-1">
                 Username or Email
               </label>
               <input
                 id="email"
                 type="text"
-                className="form-control"
+                className="form-control glass-input"
                 value={email}
                 onChange={handleEmailChange}
                 required
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">
+            <div className="mb-5">
+              <label htmlFor="password" className="form-label text-light opacity-75 ms-1">
                 Password
               </label>
               <input
                 id="password"
                 type="password"
-                className="form-control"
+                className="form-control glass-input"
                 autoComplete="on"
                 value={password}
                 onChange={handlePasswordChange}
@@ -95,13 +93,7 @@ const Login = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className={`btn btn-dark ${isLoading ? "disabled" : ""}`}
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "1.1rem",
-                  borderRadius: "4px",
-                  width: "100%",
-                }}
+                className={`btn-glass-primary w-100 ${isLoading ? "disabled" : ""}`}
               >
                 {isLoading ? (
                   <>
@@ -112,7 +104,7 @@ const Login = () => {
                     Logging in...
                   </>
                 ) : (
-                  "Login"
+                  "Log In"
                 )}
               </button>
             </div>
